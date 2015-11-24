@@ -414,10 +414,16 @@
                               return el.style.transform = el.style.webkitTransform = 'translate3d(' + x + 'px,0,0)';
                             });
                             */
-                        },
+                        }
                     });
                     $scope.$parent.swipeCard = swipeableCard;
-                    swipeCards.registerCard(swipeableCard);
+                    swipeCards.registerCard(
+                        swipeableCard,
+                        Array.prototype.indexOf.call(
+                            swipeableCard.el.parentElement.getElementsByTagName('td-card'),
+                            swipeableCard.el
+                        )
+                    );
                     $scope.$on('$destroy', function() {
                         swipeCards.unregisterCard(swipeableCard);
                     });
@@ -474,8 +480,8 @@
                     return this.cardInstances[this.cardInstances.length - 1];
                 };
 
-                this.registerCard = function(cardInstance) {
-                    this.cardInstances.push(cardInstance);
+                this.registerCard = function(cardInstance, index) {
+                    this.cardInstances.splice(index, 0, cardInstance);
                 };
 
                 this.unregisterCard = function(cardInstance) {
