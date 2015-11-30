@@ -181,6 +181,10 @@
                 self.el.style.transition = self.el.style.webkitTransition = 'all ' + duration + 's ease-in-out';
             });
 
+            self.x = targetX;
+            self.y = targetY;
+            self.rotationAngle = rotateTo;
+
             var deferred = this.$q.defer();
 
             // Trigger destroy after card has swiped out
