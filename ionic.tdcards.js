@@ -152,7 +152,6 @@
             var self = this;
 
             var isGestureSwipe = (typeof e === "object");
-            console.info(isGestureSwipe, this.isUnderThreshold(), this.isUnderVerticalThreshold());
 
             if (isGestureSwipe && this.isUnderThreshold() && this.isUnderVerticalThreshold()) {
                 self.onSnapBack(this.x, this.y, this.rotationAngle);
@@ -432,7 +431,6 @@
                                 });
                             },
                             onTransitionOut: function(direction, amt) {
-                                console.info('direction', direction);
                                 switch (direction) {
                                     case 'right':
                                         swipeableCard.onTransitionRight();
