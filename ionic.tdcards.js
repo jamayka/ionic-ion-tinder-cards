@@ -37,10 +37,10 @@
             this.$q = opts.$q;
             this.el = opts.el;
 
-            this.parentWidth = this.el.parentNode.offsetWidth;
+            this.parentWidth = this.el.offsetWidth;
             this.width = this.el.offsetWidth;
 
-            this.parentHeight = this.el.parentNode.offsetHeight;
+            this.parentHeight = this.el.offsetHeight;
             this.height = this.el.offsetHeight;
 
             this.startX = this.startY = this.x = this.y = 0;
