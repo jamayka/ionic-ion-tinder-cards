@@ -310,7 +310,7 @@
 
             var self = this;
             setTimeout(function() {
-                self.onPartialSwipe(self.thresholdAmount, this.thresholdVerticalAmount);
+                self.onPartialSwipe(self.thresholdAmount, self.thresholdVerticalAmount);
             });
         },
         _doDragEnd: function(e) {
@@ -460,6 +460,7 @@
                             onSnapBack: function(startX, startY, startRotation) {
                                 var leftText = el.querySelector('.yes-text');
                                 var rightText = el.querySelector('.no-text');
+                                var self = this;
 
                                 var animation = collide.animation({
                                         // 'linear|ease|ease-in|ease-out|ease-in-out|cubic-bezer(x1,y1,x2,y2)',
@@ -482,6 +483,10 @@
                                         el.style.transform = el.style.webkitTransform = 'translate3d(' + (startX - startX * v) + 'px, ' + (startY - startY * v) + 'px, 0) rotate(' + (startRotation - startRotation * v) + 'rad)';
                                         if (rightText) rightText.style.opacity = 0;
                                         if (leftText) leftText.style.opacity = 0;
+                                    })
+                                    .on('complete', function () {
+                                        self.destroyed = false;
+                                        el.style.transition = '';
                                     })
                                     .start();
 
